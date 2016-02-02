@@ -3,24 +3,19 @@ var request = require('request');
 // console.log(express);
 var app = express();
 var logger = require('express-logger')
+var bodyParser = require('body-parser')
 app.use(logger);
-// var mo = require('morgan');
-// app.use(logger); //replaces your app.use(express.logger());
 
-// Configuration
+app.set('views', __dirname + '/app');
+app.use(bodyParser);
+app.use(express.methodOverride());
+app.use(express.static(__dirname + '/app'));
+app.use(app.router);
+app.engine('html', require('ejs').renderFile);
 
-// app.configure(function(){
-  app.set('views', __dirname + '/app');
-  //app.set('view engine', 'jade');
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
-  app.use(express.static(__dirname + '/app'));
-  app.use(app.router);
-  app.engine('html', require('ejs').renderFile);
-// });
 
 app.get('/', function(request, response) {
-  response.render('index.html')
+    response.render('index.html')
 });
 
 app.post('/LCB/postWrapper', function(req, res) {
@@ -37,5 +32,5 @@ app.post('/LCB/postWrapper', function(req, res) {
 
 var port = process.env.PORT || 5000;
 app.listen(port, function() {
-  console.log("Listening on " + port);
+    console.log("Listening on " + port);
 });
