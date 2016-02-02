@@ -2,7 +2,7 @@ var express = require("express");
 var request = require('request');
 
 var app = express();
-app.use(express.logger());
+// app.use(express.logger());
 
 // Configuration
 
