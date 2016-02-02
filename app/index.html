@@ -1,0 +1,71 @@
+<html ng-app="countryApp">
+<head>
+    <meta charset="utf-8">
+    <title>Potnet</title>
+    <link rel="icon" href="http://potnet.net/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="bower_components/Materialize/dist/css/materialize.min.css">
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
+    <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.min.css">
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css"> -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-material/angular-material.min.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <script src="bower_components/angular-loading-bar/build/loading-bar.min.js"></script>
+    <script src="bower_components/Materialize/dist/js/materialize.min.js"></script>
+    <script src="bower_components/firebase/firebase.js"></script>
+    <script src="bower_components/angularfire/dist/angularfire.js"></script>
+    <script src="bower_components/underscore/underscore-min.js"></script>
+    <script src="bower_components/angular-underscore-module/angular-underscore-module.js"></script>
+
+    <!-- <script src="bower_components/angular-loading-bar/build/loading-bar.min.js"></script> -->
+
+
+    <script src="app.js"></script>
+    <script src="PATHS/PATHS.js"></script>
+    <script src="Landing/Landing-Controller.js"></script>
+    <script src="Market/Market-Controller.js"></script>
+    <script src="Market/Market.js"></script>
+    <script src="Index/Index-Controller.js"></script>
+    <script src="LCB/LCB.js"></script>
+    <script src="Inventory/Inventory.js"></script>
+    <script src="Auctions/Auctions-Controller.js"></script>
+    <script src="Auctions/CreateAuction-Controller.js"></script>
+    <script src="Auctions/Auction.js"></script>
+    <script src="Cloud-Machine/Cloud-Machine.js"></script>
+    <script src="Bids/Bids-Controller.js"></script>
+    <script src="Bids/Create-Bid-Controller.js"></script>
+    <!-- <script src="utils/underscore-wrapper.js"></script> -->
+
+
+</head>
+<body ng-controller="IndexController as vm">
+    <div layout="column" layout-fill>
+        <md-toolbar class="z-depth-1">
+            <div class="md-toolbar-tools">
+                <!-- <span>Potnet</span> -->
+                <md-button ng-click="vm.toMarket()">
+                MARKETPLACE
+                </md-button>
+                <!-- fill up the space between left and right area -->
+                <span flex></span>
+                <!-- <md-button ng-click="vm.toMarket()">
+                MARKET
+                </md-button> -->
+                <md-button ng-click="vm.toBids()">
+                MY ORDERS
+                </md-button>
+                <md-button ng-click="vm.toAuctions()">
+                MY INVENTORY
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-content layout-padding>
+            <div ng-view>
+        </md-content>
+    </div>
+</body>
+</html>

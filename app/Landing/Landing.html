@@ -1,0 +1,35 @@
+<md-toolbar ng-if="vm.error">
+    <div class="md-toolbar-tools">
+        {{vm.error}}
+    </div>
+</md-toolbar>
+
+<!-- <md-tabs md-selected="data.selectedIndex" md-dynamic-height md-border-bottom md-align-tabs="top"> -->
+<!-- <md-tab id="tab2">
+<md-tab-label>Sign In</md-tab-label>
+<md-tab-body> -->
+<!-- <div class="md-padding" layout="col"> -->
+<div class="container" layout-padding>
+
+    <div class="input-field col s6">
+        <input type="text" id="username" ng-model="vm.formData.username">
+        <label for="username">Username</label>
+    </div>
+    <div class="input-field col s6">
+        <input type="text" id="password" ng-model="vm.formData.password">
+        <label for="password">Password</label>
+    </div>
+    <div class="input-field col s6">
+        <input type="text" id="ubi" ng-model="vm.formData.license_number">
+        <label for="ubi">UBI</label>
+    </div>
+    <!-- <p /> -->
+    <!-- <md-button ng-click="vm.signIn()" class="md-raised md-primary">Submit</md-button> -->
+    <div>
+        <a class="waves-effect waves-light btn-large" ng-click="vm.signIn()">Sign In</a>
+    </div>
+
+</div>
+<!-- </md-tab-body> -->
+<!-- </md-tab>
+</md-tabs> -->

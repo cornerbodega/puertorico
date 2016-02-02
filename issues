@@ -1,0 +1,4 @@
+*) Add Toast after $location.path(...) to show SUCCESS!
+*) What if they do an inventory adjust after creating an auction?
+     Need to cancel the auction! Can't prevent them from doing this in traceability, but need to handle
+     -- this is a good example of a case where a phonecall/human involvement can go a long way. doable bc market is small

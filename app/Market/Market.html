@@ -1,0 +1,58 @@
+<table class="table-striped">
+    <tr ng-show="!filter">
+        <td colspan="7"><a ng-click="filter=!filter">Show Filters</a></td>
+    </tr>
+    <tr ng-show="filter">
+        <td colspan="7"><a ng-click="filter=!filter">Hide Filters</a></td>
+    </tr>
+
+    <tr>
+        <!-- <th><a ng-click="sortBy='id'">Barcode</a> <span ng-show="sortBy == 'id'" class="fa fa-caret-down"></span></th> -->
+        <th><a ng-click="sortBy='type'">Type</a> <span ng-show="sortBy == 'type'" class="fa fa-caret-down"></span></th>
+        <th><a ng-click="sortBy='strain'">Strain</a> <span ng-show="sortBy == 'strain'" class="fa fa-caret-down"></span></th>
+        <th><a ng-click="sortBy='remaining_quantity'">Remaining Quantity</a> <span ng-show="sortBy == 'remaining_quantity'" class="fa fa-caret-down"></span></th>
+        <th><a ng-click="sortBy='usable_weight'">Usable Weight</a> <span ng-show="sortBy == 'usable_weight'" class="fa fa-caret-down"></span></th>
+        <!-- <th><a ng-click="sortBy='createdAt'">Time Left</a> <span ng-show="sortBy == 'createdAt'" class="fa fa-caret-down"></span></th> -->
+        <!-- <th><a ng-click="sortBy='startingPrice'">Current Bid</a> <span ng-show="sortBy == 'startingPrice'" class="fa fa-caret-down"></span></th> -->
+        <th><a ng-click="sortBy='buyoutPrice'"> Price</a> <span ng-show="sortBy == 'buyoutPrice'" class="fa fa-caret-down"></span></th>
+
+        <!-- <th>Type</th> -->
+        <!-- <th>Strain</th>
+        <th>Remaining Quantity</th>
+        <th>Usable Weight</th>
+        <th>Time Left</th>
+        <th>Current Bid</th> -->
+    </tr>
+    <tr ng-show="filter">
+        <td>
+            <md-input-container>
+                <label><i class="fa fa-search"></i> Search</label>
+                <input aria-label="search" ng-model="search.id">
+            </md-input-container>
+        </td>
+        <td>
+            <md-input-container>
+                <label><i class="fa fa-search"></i> Search</label>
+                <input aria-label="search" ng-model="search.type">
+            </md-input-container>
+        </td>
+        <td>
+            <md-input-container>
+                <label><i class="fa fa-search"></i> Search</label>
+                <input aria-label="search" ng-model="search.strain">
+            </md-input-container>
+        </td>
+
+    </tr>
+    <tr ng-repeat="auction in auctions |filter:search | orderBy:sortBy" ng-click="createBid(auction)">
+
+        <!-- <td>{{auction.item.id}}</td> -->
+        <td>{{auction.item.type}}</td>
+        <td>{{auction.item.strain}}</td>
+        <td>{{auction.item.remaining_quantity}}</td>
+        <td>{{auction.item.usable_weight}}</td>
+        <!-- <td>{{auction.createdAt}}</td> -->
+        <!-- <td>${{auction.startingPrice}}</td> -->
+        <td>${{auction.buyoutPrice}}</td>
+    </tr>
+</table>
