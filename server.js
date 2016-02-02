@@ -3,6 +3,8 @@ var request = require('request');
 
 var app = express();
 // app.use(express.logger());
+var logger = require('morgan');
+app.use(logger); //replaces your app.use(express.logger());
 
 // Configuration
 
