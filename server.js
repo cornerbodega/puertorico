@@ -2,9 +2,9 @@ var express = require("express");
 var request = require('request');
 // console.log(express);
 var app = express();
-// app.use(express.logger());
-var logger = require('morgan');
-app.use(logger); //replaces your app.use(express.logger());
+app.use(express.logger());
+// var mo = require('morgan');
+// app.use(logger); //replaces your app.use(express.logger());
 
 // Configuration
 
