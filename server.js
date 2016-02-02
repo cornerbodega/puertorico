@@ -11,7 +11,7 @@ app.set('views', __dirname + '/app');
 app.use(bodyParser);
 app.use(methodOverride);
 app.use(express.static(__dirname + '/app'));
-// app.use(app.router);
+// app.use(app.router);     
 app.engine('html', require('ejs').renderFile);
 
 
