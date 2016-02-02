@@ -4,11 +4,12 @@ var request = require('request');
 var app = express();
 var logger = require('express-logger')
 var bodyParser = require('body-parser')
+var methodOverride = require('method-override')
 app.use(logger);
 
 app.set('views', __dirname + '/app');
 app.use(bodyParser);
-app.use(express.methodOverride());
+app.use(methodOverride;
 app.use(express.static(__dirname + '/app'));
 app.use(app.router);
 app.engine('html', require('ejs').renderFile);
