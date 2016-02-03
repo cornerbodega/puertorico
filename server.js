@@ -2,23 +2,25 @@ var express = require("express");
 var request = require('request');
 // console.log(express);
 var app = express();
-var logger = require('express-logger')
-var bodyParser = require('body-parser')
-var methodOverride = require('method-override')
-app.use(logger);
-
+// var logger = require('express-logger');
+var bodyParser = require('body-parser');
+// var methodOverride = require('method-override');
+// app.use(logger);
+//
 app.set('views', __dirname + '/app');
-app.use(bodyParser);
-app.use(methodOverride);
+// app.use(bodyParser);
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+// app.use(methodOverride);
 app.use(express.static(__dirname + '/app'));
-// app.use(app.router);     
+// app.use(app.router);
 app.engine('html', require('ejs').renderFile);
-
-
+//
+//
 app.get('/', function(request, response) {
-    response.render('index.html')
+    response.render('index.html');
 });
-
+//
 app.post('/LCB/postWrapper', function(req, res) {
     console.log(req.body);
     request({
