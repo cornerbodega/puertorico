@@ -4,7 +4,7 @@ var countryApp = angular.module('countryApp', [
   'angular-loading-bar',
   'firebase',
   'underscore',
-  'PATHS',
+  // 'PATHS',
 ]);
 
 countryApp.config(function($routeProvider) {
@@ -14,12 +14,12 @@ countryApp.config(function($routeProvider) {
       controller: 'LandingController',
       controllerAs: 'vm'
     })
-    .when('/market', {
+    .when(window.PATHS.MARKET, {
       templateUrl: 'Market/Market.html',
       controller: 'MarketController',
       controllerAs: 'vm'
     })
-    .when('/bids', {
+    .when(window.PATHS.BIDS, {
       templateUrl: 'Bids/Bids.html',
       controller: 'BidsController',
       controllerAs: 'vm'

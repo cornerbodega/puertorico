@@ -1,14 +1,16 @@
 <table class="table-striped">
-    <tr ng-show="!filter">
+    <!-- <tr ng-show="!filter">
         <td colspan="7"><a ng-click="filter=!filter">Show Filters</a></td>
     </tr>
     <tr ng-show="filter">
         <td colspan="7"><a ng-click="filter=!filter">Hide Filters</a></td>
-    </tr>
-
+    </tr> -->
+    <!-- <tr> -->
+        <!-- <md-switch ng-model="data.cb1" aria-label="Switch 1"></md-switch> -->
+    <!-- </tr> -->
     <tr>
         <!-- <th><a ng-click="sortBy='id'">Barcode</a> <span ng-show="sortBy == 'id'" class="fa fa-caret-down"></span></th> -->
-        <th><a ng-click="sortBy='type'">Type</a> <span ng-show="sortBy == 'type'" class="fa fa-caret-down"></span></th>
+        <th><a ng-click="sortBy==='type' ? sortBy='type' : sortBy = '!type'">Type</a> <span ng-show="sortBy == 'type'" class="fa fa-caret-down"></span></th>
         <th><a ng-click="sortBy='strain'">Strain</a> <span ng-show="sortBy == 'strain'" class="fa fa-caret-down"></span></th>
         <th><a ng-click="sortBy='remaining_quantity'">Remaining Quantity</a> <span ng-show="sortBy == 'remaining_quantity'" class="fa fa-caret-down"></span></th>
         <th><a ng-click="sortBy='usable_weight'">Usable Weight</a> <span ng-show="sortBy == 'usable_weight'" class="fa fa-caret-down"></span></th>

@@ -14,14 +14,24 @@
     vm.toMarket = toMarket;
     vm.toBids = toBids;
     vm.toAuctions = toAuctions;
+
     if (!sessionStorage.sessionid) $location.path(PATHS.LANDING)
     function toMarket() {
+        vm.market = "z-depth-4"
+        vm.bids = false
+        vm.auctions = false
         $location.path(PATHS.MARKET)
     }
     function toBids() {
+        vm.market = false
+        vm.bids = "z-depth-4"
+        vm.auctions = false
         $location.path(PATHS.BIDS)
     }
     function toAuctions() {
+        vm.market = false
+        vm.bids = false
+        vm.auctions = "z-depth-4"
         $location.path(PATHS.AUCTIONS)
     }
   };

@@ -27,6 +27,7 @@
 
 
     <script src="app.js"></script>
+    <script src="Paths/PATHS1.js"></script>
     <script src="Paths/Paths.js"></script>
     <script src="Landing/Landing-Controller.js"></script>
     <script src="Market/Market-Controller.js"></script>
@@ -48,19 +49,12 @@
     <div layout="column" layout-fill>
         <md-toolbar class="z-depth-1">
             <div class="md-toolbar-tools">
-                <!-- <span>Potnet</span> -->
-                <md-button ng-click="vm.toMarket()">
-                MARKETPLACE
-                </md-button>
-                <!-- fill up the space between left and right area -->
+                <md-button ng-class="vm.market" ng-click="vm.toMarket()">MARKETPLACE</md-button>
                 <span flex></span>
-                <!-- <md-button ng-click="vm.toMarket()">
-                MARKET
-                </md-button> -->
-                <md-button ng-click="vm.toBids()">
+                <md-button ng-class="vm.bids" ng-click="vm.toBids()">
                 MY ORDERS
                 </md-button>
-                <md-button ng-click="vm.toAuctions()">
+                <md-button ng-class="vm.auctions" ng-click="vm.toAuctions()">
                 MY INVENTORY
                 </md-button>
             </div>
