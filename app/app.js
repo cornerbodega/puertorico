@@ -4,6 +4,7 @@ var countryApp = angular.module('countryApp', [
   'angular-loading-bar',
   'firebase',
   'underscore',
+  'PATHS',
 ]);
 
 countryApp.config(function($routeProvider) {

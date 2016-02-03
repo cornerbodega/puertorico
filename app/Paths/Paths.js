@@ -1,12 +1,12 @@
 
 (function(){
     angular
-    .module('countryApp')
+    .module('PATHS',[])
     .factory('PATHS', [
     PATHS
 ])
-
 function PATHS() {
+    console.log('PATHS!!');
     var PATHS = {
         MARKET:   '/market',
         BIDS:     '/bids',
