@@ -10,9 +10,10 @@ function BidsController($location, $scope, Market, _) {
     auctionsRef.$loaded().then(function(){
         auctionsRef.$bindTo($scope, 'auctions').then(function(){
             $scope.myOrders = myOrders()
+            console.log($scope.auctions);
+
         })
         // console.log(auctionsRef);
-        console.log($scope.auctions);
 
         // console.log($scope.myOrders);
     })
