@@ -2,15 +2,15 @@
 (function(){
   angular
     .module('countryApp')
-    .controller('IndexController', ['$location',
+    .controller('IndexController', ['$location', 'PATHS',
       IndexController
     ])
 
 
-  function IndexController($location) {
+  function IndexController($location, PATHS) {
     var vm = this;
         console.log('Index Controller!');
-    var PATHS = {MARKET:'/market'}
+
     vm.toMarket = toMarket;
     vm.toBids = toBids;
     vm.toAuctions = toAuctions;
