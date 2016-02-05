@@ -18,7 +18,8 @@
         Auction.auction = auction
         $location.path(PATHS.CREATE_BID + auction.item.id)
     }
-    auctions.$loaded().then(function(){
+    $scope.promise = auctions.$loaded()
+    $scope.promise.then(function(){
         // $scope.auctions = auctions
             _.each(auctions,function(auction){
                 if (!auction) return
@@ -27,6 +28,14 @@
             // console.log(auction);
         })
     })
+
+    $scope.selected = []
+    $scope.orderBy = function reOrder(col) {
+        console.log(col);
+        $scope.sortBy = col
+        $scope.reverse = !$scope.reverse
+        console.log($scope.reverse);
+    }
   };
 
 })();

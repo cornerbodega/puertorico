@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
     <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.min.css">
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bower_components/angular-material-data-table/dist/md-data-table.min.css">
+    <link rel="stylesheet" href="style/style.css">
     <!-- <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css"> -->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/angular/angular.js"></script>
@@ -22,6 +24,8 @@
     <script src="bower_components/angularfire/dist/angularfire.js"></script>
     <script src="bower_components/underscore/underscore-min.js"></script>
     <script src="bower_components/angular-underscore-module/angular-underscore-module.js"></script>
+    <script src="bower_components/angular-material-data-table/dist/md-data-table.min.js"></script>
+    <!-- <script src="bower_components/angular-smart-table/dist/smart-table.js"></script> -->
 
     <!-- <script src="bower_components/angular-loading-bar/build/loading-bar.min.js"></script> -->
 
@@ -41,25 +45,27 @@
     <script src="Cloud-Machine/Cloud-Machine.js"></script>
     <script src="Bids/Bids-Controller.js"></script>
     <script src="Bids/Create-Bid-Controller.js"></script>
+    <script src="Directives/Directives.js"></script>
     <!-- <script src="utils/underscore-wrapper.js"></script> -->
 
 
 </head>
 <body ng-controller="IndexController as vm">
     <div layout="column" layout-fill>
-        <md-toolbar class="z-depth-1">
-            <div class="md-toolbar-tools">
-                <md-button ng-class="vm.market" ng-click="vm.toMarket()">MARKETPLACE</md-button>
-                <span flex></span>
-                <md-button ng-class="vm.bids" ng-click="vm.toBids()">
-                MY ORDERS
-                </md-button>
-                <md-button ng-class="vm.auctions" ng-click="vm.toAuctions()">
-                MY INVENTORY
-                </md-button>
-            </div>
-        </md-toolbar>
-        <md-content layout-padding>
+
+        <md-content>
+            <md-toolbar class="z-depth-1">
+                <div class="md-toolbar-tools">
+                    <md-button ng-class="vm.market" ng-click="vm.toMarket()">MARKETPLACE</md-button>
+                    <span flex></span>
+                    <md-button ng-class="vm.bids" ng-click="vm.toBids()">
+                    MY ORDERS
+                    </md-button>
+                    <md-button ng-class="vm.auctions" ng-click="vm.toAuctions()">
+                    MY INVENTORY
+                    </md-button>
+                </div>
+            </md-toolbar>
             <div ng-view>
         </md-content>
     </div>

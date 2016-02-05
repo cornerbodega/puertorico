@@ -7,7 +7,7 @@
     </tr>
 
     <tr>
-        <th><a ng-click="sortBy='id'">Barcode</a> <span ng-show="sortBy == 'id'" class="fa fa-caret-down"></span></th>
+        <th><a ng-click="reOrder('id')">Barcode</a> <span ng-show="sortBy == 'id'" class="fa fa-caret-down"></span></th>
         <th><a ng-click="sortBy='type'">Type</a> <span ng-show="sortBy == 'type'" class="fa fa-caret-down"></span></th>
         <th><a ng-click="sortBy='strain'">Strain</a> <span ng-show="sortBy == 'strain'" class="fa fa-caret-down"></span></th>
         <th><a ng-click="sortBy='remaining_quantity'">Remaining Quantity</a> <span ng-show="sortBy == 'remaining_quantity'" class="fa fa-caret-down"></span></th>
@@ -54,7 +54,8 @@
         <td>{{auction.createdAt}}</td>
         <!-- <td>${{auction.startingPrice}}</td> -->
         <td>${{auction.buyoutPrice}}</td>
-        <td><i ng-if="auction.buyer">Sold</i></td>
+        <td><i ng-if="auction.buyer">Sold</i><i ng-if="!auction.buyer">For Sale</i></td>
+        <!-- <td></td> -->
 
     </tr>
     <tr ng-repeat="item in myInventoryItems |filter:search | orderBy:sortBy">
