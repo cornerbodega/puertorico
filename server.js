@@ -1,26 +1,21 @@
-var express = require("express");
+var express = require('express');
 var request = require('request');
-// console.log(express);
 var app = express();
-// var logger = require('express-logger');
 var bodyParser = require('body-parser');
-// var methodOverride = require('method-override');
-// app.use(logger);
-//
+var mailgunApiKey = 'key-8a6f961d68ed6c16ac83dfaf60b96001'
+var mailgunDomain = 'sandbox1783d6090dde4d9f96975ffc132f7e2a.mailgun.org'
+var mailgun = require('mailgun-js')({apiKey: mailgunApiKey, domain: mailgunDomain});
+
 app.set('views', __dirname + '/app');
-// app.use(bodyParser);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-// app.use(methodOverride);
 app.use(express.static(__dirname + '/app'));
-// app.use(app.router);
 app.engine('html', require('ejs').renderFile);
-//
-//
+
 app.get('/', function(request, response) {
     response.render('index.html');
 });
-//
+
 app.post('/LCB/postWrapper', function(req, res) {
     console.log(req.body);
     request({

@@ -2,22 +2,35 @@
 (function(){
     angular
     .module('countryApp')
-    .factory('CloudMachine', [ '$firebaseObject',
+    .factory('CloudMachine', [ '$firebaseObject', '$http',
     CloudMachine
 ])
 
-function CloudMachine($firebaseObject) {
+function CloudMachine($firebaseObject, $http) {
 
     var cloudMachine = {
         // createAuction: createAuction
         // createCloudMachine: createCloudMachine,
         auctionsRef: auctionsRef,
+        ChimpMachine: ChimpMachine,
     }
 
     function auctionsRef() {
         var rootRef = new Firebase("https://potnet.firebaseio.com")
         var auctions =  $firebaseObject(rootRef.child('auctions'))
         return auctions
+    }
+
+    function ChimpMachine () {
+        console.log('ChimpMachine!!');
+        // https://mandrillapp.com/api/1.0/
+
+        function buy {
+
+        }
+        return {
+            buy: buy
+        }
     }
     // function createAuction(newAuction, fail, succeed) {
     //     var randomId = Math.round(Math.random() * 100000000);

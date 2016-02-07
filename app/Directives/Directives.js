@@ -2,13 +2,22 @@
     angular
     .module('countryApp')
 
-    .directive('marketParallax', function ($compile) {
+    .directive('marketCard', function ($compile, CloudMachine) {
         return {
             restrict: 'E',
-            templateUrl: 'Market/templates/market-parallax.html',
+            scope: {
+                auction: '='
+            },
+            templateUrl: 'Market/templates/market-card.html',
             link: function (scope, element, attrs) {
-                element.find('.parallax').parallax()
-                console.log( element.find('.parallax').parallax());
+                console.log(scope.auction);
+                scope.buy = function buy(auction) {
+                    // https://mandrillapp.com/api/1.0/
+                    console.log('Buy!!');
+                    console.log(auction);
+                    // CloudMachine.ChimpMachine.buy(auction)
+                    
+                }
             }
         }
     })

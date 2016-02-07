@@ -1,0 +1,42 @@
+<!-- <md-table-container> -->
+    <table  md-table ng-model="selected" md-progress="promise">
+        <thead md-head>
+            <tr md-row>
+                sortBy: {{sortBy}}
+                reverse: {{reverse}}
+                <!-- <th><a ng-click="sortBy='id'">Barcode</a> <span ng-show="sortBy == 'id'" class="fa fa-caret-down"></span></th> -->
+                <!-- <th md-column><a ng-click="query.order='type'">Type</a> <span ng-show="sortBy == 'type'" class="fa fa-caret-down"></span></th> -->
+                <!-- <th md-column md-numeric md-order-by="type"><span ng-click="reOrder('type'); reverse=!reverse">TYPE</span></th>
+                <th md-column md-numeric md-order-by="strain"><span ng-click="reOrder('strain'); reverse=!reverse">STRAIN</span></th>
+                <th md-column md-numeric md-order-by="remaining_quantity"><span ng-click="reOrder('remaining_quantity'); reverse=!reverse">REMAINING_QUANTITY</span></th>
+                <th md-column md-numeric md-order-by="usable_weight"><span ng-click="reOrder('usable_weight'); reverse=!reverse">USABLE_WEIGHT</span></th>
+                <th md-column md-numeric md-order-by="price"><span ng-click="reOrder('price'); reverse=!reverse">PRICE</span></th> -->
+                <th md-column ng-repeat="header in headers">
+                    <!-- <span ng-show="sortBy === name">
+                        <i ng-show="reverse" class="fa fa-arrow-down" />
+                        <i ng-show="!reverse" class="fa fa-arrow-up" />
+                    </span> -->
+                    <!-- <a ng-click="orderBy('type');">{{}}</a> -->
+                    {{header.name}}
+                </th>
+                <!-- <th md-column><a ng-click="sortBy='strain'; reverse=!reverse">STRAIN</a> <span ng-show="sortBy == 'strain'" class="fa fa-caret-down"></span></th>
+                <th md-column><a ng-click="sortBy='remaining_quantity'; reverse=!reverse">REMAINING QUANTITY</a> <span ng-show="sortBy == 'remaining_quantity'" class="fa fa-caret-down"></span></th>
+                <th md-column><a ng-click="sortBy='usable_weight'; reverse=!reverse">USABLE WEIGHT</a> <span ng-show="sortBy == 'usable_weight'" class="fa fa-caret-down"></span></th>
+                <th md-column><a ng-click="sortBy='buyoutPrice'; reverse=!reverse"> PRICE</a> <span ng-show="sortBy == 'buyoutPrice'" class="fa fa-caret-down"></span></th> -->
+            </tr>
+        </thead>
+        <tbody md-body>
+
+            <tr md-row ng-repeat="auction in auctions |filter:search | orderBy:sortBy:reverse" ng-click="createBid(auction)">
+                <td md-cell>{{auction.item.image}}</td>
+                <td md-cell>{{auction.item.description_label}}</td>
+                <td md-cell>{{auction.item.quantity_label}}</td>
+                <td md-cell>${{auction.buyoutPrice}}</td>
+
+                <!-- <td md-cell>{{auction.item.strain}}</td> -->
+                <!-- <td md-cell>{{auction.item.remaining_quantity}}</td> -->
+                <!-- <td md-cell>{{auction.item.usable_weight}}</td> -->
+            </tr>
+        </tbody>
+    </table>
+<!-- </md-table-container> -->
