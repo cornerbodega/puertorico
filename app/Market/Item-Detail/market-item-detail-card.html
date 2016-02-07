@@ -1,0 +1,57 @@
+
+<div>
+    <div class="container">
+        <!-- <div class="col s12 m6"> -->
+
+
+        <div class="card" layout="row" >
+            <!-- <div> -->
+            <div flex class="card-content black-text" flex="50">
+            <!-- <div flex class="deep-purple lighten-4 card-content black-text" flex="50"> -->
+
+                <center>
+                    <div class="card-title">{{auction.item.productname}}</div>
+                    <p>
+
+                    {{auction.item.remaining_quantity}} x {{auction.item.usable_weight}} g
+                    <!-- <p>${{auction.buyoutPrice}}<p> -->
+
+                    <ul>
+                        <!-- <li>Usable Weight: {{auction.item.usable_weight}}</li> -->
+                        <!-- <li>Remaining Quantity: {{auction.item.remaining_quantity}}</li> -->
+                        <li>{{auction.item.id}}</li>
+                        <li>#{{auction.item.type}}</li>
+                        <li>#{{auction.item.strain}}</li>
+                        <!-- <li>#{{auction.item.productname}}</li> -->
+                    </ul>
+                    <!-- <div class="card-action"> -->
+                    <div layout-padding>
+
+                    </ul>
+                </div>
+                <div layout-padding>
+                    <h3>Purchase for ${{auction.buyoutPrice}}?</h3>
+                    <div layout-row>
+                        <a class="waves-effect waves-light btn-large" ng-click="buy(auction)">YES</a>
+                        <a class="waves-effect waves-light btn-large" ng-click="cancel()">NO</a>
+                    </div>
+                </div>
+            </center>
+            <!-- <span ><a ng-click="toMarket()"><i class="fa fa-angle-left"></i> Back</a></span> -->
+        </div>
+        <!-- <div class="indigo lighten-4" flex="50">
+
+            <div  class="indigo lighten-4" layout-padding>
+                <center><a class="waves-effect waves-light btn-large"><i class="fa fa-cloud"></i> Add Image</a></center>
+            </div>
+        </div> -->
+    </div>
+    <md-toolbar ng-if="vm.error" class="red accent-4">
+        <center layout-padding>{{vm.error}}</center>
+    </md-toolbar>
+</div>
+</div>
+
+<!-- <pre>
+{{vm.item | json}}
+</pre> -->

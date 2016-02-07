@@ -13,20 +13,24 @@
 
     <div class="input-field col s6">
         <input type="text" id="username" ng-model="vm.formData.username">
-        <label for="username">Username</label>
+        <label for="username">USERNAME</label>
     </div>
     <div class="input-field col s6">
         <input type="text" id="password" ng-model="vm.formData.password">
-        <label for="password">Password</label>
+        <label for="password">PASSWORD</label>
     </div>
-    <div class="input-field col s6">
+    <div class="input-field col s6" ng-if="!!vm.show_ubi">
         <input type="text" id="ubi" ng-model="vm.formData.license_number">
         <label for="ubi">UBI</label>
+    </div>
+    <div class="input-field col s6" ng-if="!!vm.show_phone">
+        <input type="text" id="phone" ng-model="vm.formData.phone">
+        <label for="phone">PHONE</label>
     </div>
     <!-- <p /> -->
     <!-- <md-button ng-click="vm.signIn()" class="md-raised md-primary">Submit</md-button> -->
     <div>
-        <a class="waves-effect waves-light btn-large" ng-click="vm.signIn()">Sign In</a>
+        <a class="waves-effect waves-light btn-large" ng-click="vm.signIn()">SIGN IN</a>
     </div>
 
 </div>

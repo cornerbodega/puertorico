@@ -13,22 +13,24 @@ function MarketController($location, Auction, Market, $scope, _, PATHS) {
     $scope.sortBy = 'createdAt'
     $scope.reverse = 'true'
     $scope.auctions = []
-    $scope.createBid = createBid
-    function createBid(auction) {
-        console.log(auction);
-        Market.createOrder(auction)
-        Auction.auction = auction
-        $location.path(PATHS.CREATE_BID + auction.item.id)
-    }
-    $scope.promise = auctions.$loaded()
-    $scope.promise.then(function(){
+    // $scope.createBid = createBid
+    // function createBid(auction) {
+    //     console.log(auction);
+    //     Market.createOrder(auction)
+    //     Auction.auction = auction
+    //     $location.path(PATHS.CREATE_BID + auction.item.id)
+    // }
+    auctions.$loaded().then(function(){
         // $scope.auctions = auctions
-        _.each(auctions,function(auction){
-            if (!auction) return
-            if (auction.active) $scope.auctions.push(auction)
+        auctions.$bindTo($scope, 'auctionsDB').then(function(){
+            $scope.auctions = _.filter($scope.auctionsDB, {active: true})
+                // if (!auction) return
+                // if (auction.active) $scope.auctions.push(auction)
 
-            // console.log(auction);
+                // console.log(auction);
+            // })
         })
+
     })
     $scope.auctions.map(function formatAuctions(auction){
         auction.description_label = auction.item.productname + ' ' + auction.item.strain + ' (' + auction.item.type +') '

@@ -44,6 +44,11 @@ countryApp.config(function($routeProvider) {
       controller: 'CreateAuctionController',
       controllerAs: 'vm'
     })
+    .when('/market/item/:id', {
+      templateUrl: 'Market/Item-Detail/item-detail.html',
+      controller: 'ItemDetailController',
+      controllerAs: 'vm'
+    })
     // when('/:countryId', {
     //   templateUrl: 'country-detail.html',
     //   controller: 'CountryDetailCtrl'

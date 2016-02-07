@@ -14,7 +14,7 @@
     vm.toMarket = toMarket;
     vm.toBids = toBids;
     vm.toAuctions = toAuctions;
-
+    vm.username = sessionStorage.username
     if (!sessionStorage.sessionid) $location.path(PATHS.LANDING)
     function toMarket() {
         vm.market = "z-depth-4"

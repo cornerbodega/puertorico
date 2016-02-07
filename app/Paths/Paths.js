@@ -12,7 +12,8 @@ function PATHS() {
         BIDS:     '/bids',
         AUCTIONS: '/auctions',
         CREATE_AUCTION: '/auctions/create/', //:id
-        CREATE_BID: '/bids/create/', //:id
+        CREATE_BID: '/bids/create/', //:id,
+        ITEM_DETAIL: '/market/item' //:id
     }
 
     return PATHS

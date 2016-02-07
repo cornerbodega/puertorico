@@ -2,17 +2,19 @@
 (function(){
     angular
     .module('countryApp')
-    .factory('CloudMachine', [ '$firebaseObject', '$http',
+    .factory('CloudMachine', [ '$firebaseObject', '$http', '$location',
     CloudMachine
 ])
 
-function CloudMachine($firebaseObject, $http) {
+function CloudMachine($firebaseObject, $http, $location) {
 
     var cloudMachine = {
         // createAuction: createAuction
         // createCloudMachine: createCloudMachine,
         auctionsRef: auctionsRef,
+        users: users,
         ChimpMachine: ChimpMachine,
+        UserMachine: UserMachine,
     }
 
     function auctionsRef() {
@@ -20,18 +22,52 @@ function CloudMachine($firebaseObject, $http) {
         var auctions =  $firebaseObject(rootRef.child('auctions'))
         return auctions
     }
+    function users() {
+        return users = $firebaseObject(new Firebase("https://potnet.firebaseio.com").child('users'))
+        // var auctions =  $firebaseObject(rootRef.child('auctions'))
+        // return auctions
+    }
+    function UserMachine() {
+        function createUser(user) {
+            var users = cloudMachine.users()
+            return users.$loaded().then(function usersLoaded() {
+                if (!user) return console.log('Error! User undefined' + user);
+                var s = user.username.replace(/\W/g, '');
+                // var username_stripped = user.username.replace(/\W/g, '')
+                var key = user.ubi + s
+                console.log(key);
+                users[key] = user
+                users.$save().then(function(){console.log('User Created Successfully: ' + user.username);})
+                return user
 
+
+            })
+        }
+        return {
+            createUser: createUser
+        }
+    }
     function ChimpMachine () {
         console.log('ChimpMachine!!');
         // https://mandrillapp.com/api/1.0/
 
-        function buy() {
+        function buy(auction) {
+            $http({
+                method: 'POST',
+                url: '/textMessage/test',
+                data: { auction: auction },
+                datatype: 'json',
+            }).success(function (res) {
 
+            });
         }
+
         return {
             buy: buy
+
         }
     }
+
     // function createAuction(newAuction, fail, succeed) {
     //     var randomId = Math.round(Math.random() * 100000000);
     //     // var ref = new Firebase("https://docs-sandbox.firebaseio.com/af/obj/bindto/" + randomRoomId);
