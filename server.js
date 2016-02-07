@@ -4,7 +4,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var mailgunApiKey = 'key-8a6f961d68ed6c16ac83dfaf60b96001'
 var mailgunDomain = 'sandbox1783d6090dde4d9f96975ffc132f7e2a.mailgun.org'
-var mailgun = require('mailgun-js')({apiKey: mailgunApiKey, domain: mailgunDomain});
+var mailgun = require('mailgun-js')({ apiKey: mailgunApiKey, domain: mailgunDomain });
 
 app.set('views', __dirname + '/app');
 app.use(bodyParser.urlencoded({ extended: true }));

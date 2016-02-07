@@ -25,7 +25,7 @@ function CloudMachine($firebaseObject, $http) {
         console.log('ChimpMachine!!');
         // https://mandrillapp.com/api/1.0/
 
-        function buy {
+        function buy() {
 
         }
         return {
