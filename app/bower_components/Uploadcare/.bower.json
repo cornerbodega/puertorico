@@ -1,0 +1,41 @@
+{
+  "name": "Uploadcare",
+  "version": "2.6.0",
+  "homepage": "https://uploadcare.com/",
+  "authors": [
+    "Uploadcare <support@uploadcare.com>"
+  ],
+  "description": "HTML5 widget for uploading files from different sources, with image preview, crop and resize capabilities.",
+  "main": "uploadcare.min.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "upload",
+    "widget",
+    "image",
+    "cdn",
+    "crop"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": ">=1.10.2"
+  },
+  "_release": "2.6.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "2.6.0",
+    "commit": "1f2d56be9954df782d631179aee48dce39c9feb8"
+  },
+  "_source": "git://github.com/uploadcare/uploadcare-bower.git",
+  "_target": "^2.6.0",
+  "_originalSource": "uploadcare",
+  "_direct": true
+}

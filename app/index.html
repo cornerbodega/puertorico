@@ -3,9 +3,12 @@
     <meta charset="utf-8">
     <title>Potnet</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <script>
+        UPLOADCARE_PUBLIC_KEY = '55a55d432aed473a7467';
+    </script>
     <link rel="icon" href="http://potnet.net/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="bower_components/Materialize/dist/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
     <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.min.css">
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
@@ -26,13 +29,19 @@
     <script src="bower_components/underscore/underscore-min.js"></script>
     <script src="bower_components/angular-underscore-module/angular-underscore-module.js"></script>
     <script src="bower_components/angular-material-data-table/dist/md-data-table.min.js"></script>
+    <script src="bower_components/angular-uploadcare/angular-uploadcare.js"></script>
+    <script src="bower_components/Uploadcare/uploadcare.min.js"></script>
+
+    <!-- <script src="https://ucarecdn.com/widget/2.6.0/uploadcare/uploadcare.full.min.js" charset="utf-8"></script> -->
+
     <!-- <script src="bower_components/angular-smart-table/dist/smart-table.js"></script> -->
 
     <!-- <script src="bower_components/angular-loading-bar/build/loading-bar.min.js"></script> -->
 
 
     <script src="app.js"></script>
-    <script src="Paths/PATHS1.js"></script>
+    <script src="Paths/Window-PATHS.js"></script>
+    <script src="Globals/Globals.js"></script>
     <script src="Paths/Paths.js"></script>
     <script src="Landing/Landing-Controller.js"></script>
     <script src="Market/Market-Controller.js"></script>
@@ -42,18 +51,22 @@
     <script src="LCB/LCB.js"></script>
     <script src="Inventory/Inventory.js"></script>
     <script src="Auctions/Auctions-Controller.js"></script>
+    <script src="Auctions/Item-Detail/Auction-Item-Detail-Controller.js"></script>
     <script src="Auctions/CreateAuction-Controller.js"></script>
     <script src="Auctions/Auction.js"></script>
     <script src="Cloud-Machine/Cloud-Machine.js"></script>
-    <script src="Bids/Bids-Controller.js"></script>
-    <script src="Bids/Create-Bid-Controller.js"></script>
+    <!-- <script src="Bids/Bids-Controller.js"></script> -->
+    <!-- <script src="Bids/Create-Bid-Controller.js"></script> -->
     <script src="Directives/Directives.js"></script>
+    <script src="Manifests/controllers/All-Manifests-Controller.js"></script>
+    <script src="Manifests/controllers/Inbound-Transfers-Controller.js"></script>
+
     <!-- <script src="utils/underscore-wrapper.js"></script> -->
 
 
 </head>
 <body ng-controller="IndexController as vm">
-    <div layout="column" layout-fill>
+    <div layout="column">
 
         <md-content>
             <md-toolbar class="z-depth-1">
@@ -68,7 +81,7 @@
                     </md-button>
                 </div>
             </md-toolbar>
-            <div ng-view>
+            <div ng-view layout-padding>
         </md-content>
     </div>
 </body>

@@ -9,12 +9,14 @@ var mailgun = require('mailgun-js')({ apiKey: mailgunApiKey, domain: mailgunDoma
 var TWILIO_ACCOUNT_SID = "ACe79d77e7c4ba09bf36b0fd4b75681bff"
 var TWILIO_AUTH_TOKEN = "f236b24df4564cb72a9c2126066a778f"
 var twilio = require('twilio')(TWILIO_ACCOUNT_SID,TWILIO_AUTH_TOKEN)
+
+
+
 app.set('views', __dirname + '/app');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/app'));
 app.engine('html', require('ejs').renderFile);
-
 app.get('/', function(request, response) {
     response.render('index.html');
 });

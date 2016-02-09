@@ -1,11 +1,11 @@
 (function(){
   angular
     .module('countryApp')
-    .controller('CreateAuctionController', ['$location', 'Auction', 'PATHS', '$scope', 'CloudMachine',
+    .controller('CreateAuctionController', ['$location','$scope', 'Auction', 'PATHS', '$scope', 'CloudMachine',
       CreateAuctionController
     ])
 
-  function CreateAuctionController($location, Auction, PATHS, $scope, CloudMachine) {
+  function CreateAuctionController($location, $scope, Auction, PATHS, $scope, CloudMachine) {
     var vm = this;
     vm.auction = {}
     vm.item = Auction.item
@@ -14,9 +14,23 @@
     vm.toAuction = toAuction
     var auctionsRef = CloudMachine.auctionsRef()
     auctionsRef.$bindTo($scope, 'auctions')
+    // var tempImageInfo = {}
+    // $scope.imageUpload = imageUpload;
     // var auctionsDbRef =  new Firebase("https://potnet.firebaseio.com/auctions");
     // var syncAuctionsObject = $firebaseObject(auctionsDbRef)
+    // function imageUpload() {
+    //
+    // }
+    $scope.onUCUploadComplete = onUCUploadComplete
+    function onUCUploadComplete(info) {
+        console.log(info.uuid)
+        $scope.tempImageInfo = info
+        $scope.tempImageInfo.scaled500 = 'https://ucarecdn.com/'+info.uuid+'/-/resize/500x/'
 
+        // console.log(vm.ite);
+        // Auction.uuid = info.uuid
+
+    }
     if (!Auction.item.id) $location.path(PATHS.AUCTIONS)
 
     function toAuction() {
@@ -33,10 +47,19 @@
         // Auction.duration = vm.auction.duration // convert this to seconds?!
         Auction.item = vm.item
         Auction.active = true
+        Auction.status = window.AUCTION_STATUS.FOR_SALE
         Auction.barcodeid = Auction.item.id
         // if (!!$scope.auctions[Auction.item.id]) return vm.error = "Erorr! " + Auction.item.id + " is already up for auction!"
         // $scope.auctions[Auction.item.id] = Auction
-
+        if ($scope.tempImageInfo) {
+            var info = $scope.tempImageInfo
+            Auction.item.image = info
+            Auction.item.image.scaled500 = 'https://ucarecdn.com/'+info.uuid+'/-/resize/500x/'
+            Auction.item.image.scaled400 = 'https://ucarecdn.com/'+info.uuid+'/-/resize/400x/'
+            Auction.item.image.scaled300 = 'https://ucarecdn.com/'+info.uuid+'/-/resize/300x/'
+            Auction.item.image.scaled200 = 'https://ucarecdn.com/'+info.uuid+'/-/resize/200x/'
+            Auction.item.image.scaled100 = 'https://ucarecdn.com/'+info.uuid+'/-/resize/100x/'
+        }
         var key = Auction.item.id + Auction.createdAt
         Auction.key = key
         $scope.auctions[key] = Auction

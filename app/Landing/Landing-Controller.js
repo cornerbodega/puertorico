@@ -29,7 +29,12 @@ function LandingController($location, LCB, CloudMachine, _) {
         ///!!!!!!
 
     }
-
+    vm.demoSignIn = function () {
+        var login = {action: 'login', username: 'luchinisupercritical@gmail.com', password: '44Million!'}
+        vm.formData.username = login.username
+        vm.formData.password = login.password
+        signIn()
+    }
     function signIn () {
         // sessionStorage.ubi = llogin.license_number
         // var ubi = sessionStorage.ubi
@@ -71,7 +76,8 @@ function LandingController($location, LCB, CloudMachine, _) {
     }
     function existingUserLoginSucceed(res) {
         sessionStorage.sessionid = res.sessionid
-        $location.path(PATHS.AUCTIONS)
+        CloudMachine.StateMachine().syncCheck().then(function(){ return $location.path(PATHS.AUCTIONS) })
+
     }
     function newUserSucceed (res) {
         sessionStorage.sessionid = res.sessionid
@@ -80,10 +86,14 @@ function LandingController($location, LCB, CloudMachine, _) {
 
         users.$loaded().then(function(){
             if (vm.new_user) {
+                // var s = vm.formData.username.replace(/\W/g, '');
+                // var username_stripped = user.username.replace(/\W/g, '')
+                var key = vm.formData.license_number + vm.formData.username.replace(/\W/g, '');
                 CloudMachine.UserMachine().createUser({
                     ubi: ubi,
                     username: vm.formData.username,
-                    phone: vm.formData.phone
+                    phone: vm.formData.phone,
+                    key: key
                 }) // do a separate query to ascertain the license type!
                 .then(function userCreated(res) {
                     console.log('user created:');

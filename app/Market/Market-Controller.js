@@ -23,7 +23,8 @@ function MarketController($location, Auction, Market, $scope, _, PATHS) {
     auctions.$loaded().then(function(){
         // $scope.auctions = auctions
         auctions.$bindTo($scope, 'auctionsDB').then(function(){
-            $scope.auctions = _.filter($scope.auctionsDB, {active: true})
+            console.log();
+            $scope.auctions = _.filter($scope.auctionsDB, {status: window.AUCTION_STATUS.FOR_SALE})
                 // if (!auction) return
                 // if (auction.active) $scope.auctions.push(auction)
 

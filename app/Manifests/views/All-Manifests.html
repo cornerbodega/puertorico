@@ -1,0 +1,14 @@
+Completed Outbound Transfers:
+<div class="card" ng-if="manifest.transferred" ng-repeat="manifest in manifests">
+    {{manifest.label}}
+    <div flex class="card-content black-text"  ng-repeat="stop in manifest.stops" flex="50">
+
+    <!-- <div class="" ng-repeat="stop in manifest.stops"> -->
+        <div class="" layout-padding layout="row" ng-repeat="item in stop.items">
+            <div>{{item.inventoryid}}</div>
+            <div>{{item.description}}</div>
+            <div>{{item.price}}</div>
+        </div>
+    </div>
+    <br />
+</div>

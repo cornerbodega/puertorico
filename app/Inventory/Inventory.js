@@ -2,15 +2,16 @@
 (function(){
     angular
     .module('countryApp')
-    .factory('Inventory', [ 'LCB', '$q',
+    .factory('Inventory', [ 'LCB', '$q', '$http','CloudMachine','_',
     Inventory
 ])
 
-function Inventory(LCB, $q) {
+function Inventory(LCB, $q, $http, CloudMachine,_) {
 
     var inventory = {
         raw: [],
-        refresh: refresh,
+        // refresh: refresh,
+        format: format
     }
 
     // auctionsRef.$bindTo($scope, 'auctions')
@@ -26,17 +27,51 @@ function Inventory(LCB, $q) {
             // console.log(auctions[item.id]);
             // console.log(auctions[item.id]);
             // if (auctions[item.id]){ console.log('MATCH!!'); item.auction = auctions[item.id]}
+            console.log(item);
             return item
         }), 'sessiontime')
     }
-    function refresh() {
-        var defer = $q.defer();
-        LCB.post({action:'sync_inventory'}, LCB.fail, function(res) {
-            console.log(res);
-            defer.resolve(format(res.inventory))
-        })
-        return defer.promise
-    }
+    // function refresh() {
+    //     var defer = $q.defer();
+    //     // console.log(CloudMachine.StateMachine().syncCheck())
+    //     // CloudMachine.StateMachine().syncCheck().then().then(function(res){
+    //     //     console.log(res);
+    //     // })
+    //     return users.$loaded(function(){
+    //         var me = _.find(users, {username: sessionStorage.username})
+    //         console.log(me);
+    //         // me.summary = res.summary
+    //         // var = CloudMachine.StateMachine().
+    //         // load data from firebase first!
+    //         // then return promise,
+    //
+    //     // then update db and client as part of callback
+    //
+    //         users[me.key] = me
+    //         users.$save()
+    //
+    //     })
+    //     //
+    //     //     console.log(res.inventory);
+    //     //     // var users = CloudMachine.users()
+    //     //     // users.$loaded(function(){
+    //     //     //     var me = _.find(users, {username: sessionStorage.username})
+    //     //     //     console.log(me);
+    //     //     //     me.summary = res.summary
+    //     //     //     users[me.key] = me
+    //     //     //     users.$save()
+    //     //     // })
+    //     //     // format(res.inventory)
+    //
+    //     // defer.resolve(format(res.inventory))
+    //
+    //     // $http.get()
+    //     // LCB.post({action:'sync_inventory'}, LCB.fail, function(res) {
+    //     //     console.log(res);
+    //     //     defer.resolve(format(res.inventory))
+    //     // })
+    //     // return defer.promise
+    // }
 
     function getinventorytypeinfo (typeid) {
         var typemap = gettypemap();

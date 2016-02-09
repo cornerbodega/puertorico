@@ -4,16 +4,36 @@
         <!-- <div class="col s12 m6"> -->
 
 
-        <div class="card" layout="row" >
+        <div class="card" layout-col align-center>
             <!-- <div> -->
-            <div flex class="card-content black-text" flex="50">
+            <div class="card-image">
+                <!-- {{tempImageInfo}} -->
+                <img ng-show="!!tempImageInfo" ng-src="{{tempImageInfo.scaled500}}" />
+            </div>
+            <div layout-padding class="card-content black-text">
                 <!-- <div flex class="deep-purple lighten-4 card-content black-text" flex="50"> -->
 
                 <center>
 
                     <!-- <span class="card-title">Create Auction</span> -->
-                    <div>
-                        <a class="waves-effect waves-light btn-large">Add Image</a><!-- <i class="fa fa-cloud"></i>  -->
+                    <div  layout-padding>
+                        <!-- <a class="waves-effect waves-light btn-large" ng-click="addImage()">Add Image</a>-->
+                        <input
+                        class="waves-effect waves-light btn-large"
+                        uploadcare-widget
+                        ng-model="object.image.info.uuid"
+                        data-public-key="55a55d432aed473a7467"
+                        data-tabs="file"
+                        data-images-only="true"
+                        data-preview-step="true"
+                        data-clearable="true"
+                        data-multiple="false"
+                        data-crop="400:200"
+                        on-upload-complete="onUCUploadComplete(info)"
+                        on-widget-ready="onUCWidgetReady(widget)"
+                        value="{{ vm.item.image.info.cdnUrl }}"
+
+                        />
                     </div>
                     <ul>
                         <li>{{vm.item.id}}</li>
@@ -23,53 +43,32 @@
                         <li>Usable Weight: {{vm.item.usable_weight}}</li>
                     </ul>
                     <!-- <div class="card-action"> -->
-                    <div layout-padding>
+                    <div>
                         <ul>
-                            <!-- <li>
+                            <li>
+                                <div class="input-field col s6">
+                                    <input id="buyoutPrice" type="text" ng-model="vm.auction.buyoutPrice" class="validate">
+                                    <label for="buyoutPrice" class="black-text">($) Price</label>
+                                </div>
 
-                            <div class="input-field col s6">
-                            <input id="startingPrice" type="text" class="validate" ng-model="vm.auction.startingPrice">
-                            <label for="startingPrice" class="black-text">($) Starting Price</label>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div>
+
+                        <div>
+                            <a class="waves-effect waves-light btn-large" ng-click="vm.createAuction()"> Create Listing</a>
                         </div>
-
-                    </li> -->
-                    <li>
-                        <div class="input-field col s6">
-                            <input id="buyoutPrice" type="text" ng-model="vm.auction.buyoutPrice" class="validate">
-                            <label for="buyoutPrice" class="black-text">($) Price</label>
-                        </div>
-
-                    </li>
-                    <!-- <li>
-
-                        <md-select aria-label="vm.duration" ng-model="vm.auction.duration">
-                            <md-option ng-selected="$first" ng-repeat="strike in vm.strikeTimeOptions" value="{{strike.value}}">
-                                {{strike.label}}
-                            </md-option>
-                        </md-select>
-                    </li> -->
-                </ul>
+                    </div>
+                </center>
+                <span ><a ng-click="vm.toAuction()"><i class="fa fa-angle-left"></i> Back</a></span>
             </div>
-            <div layout-padding>
-
-                <div>
-                    <a class="waves-effect waves-light btn-large" ng-click="vm.createAuction()"> Create Listing</a>
-                </div>
-            </div>
-        </center>
-        <span ><a ng-click="vm.toAuction()"><i class="fa fa-angle-left"></i> Back</a></span>
+        </div>
+        <md-toolbar ng-if="vm.error" class="red accent-4">
+            <center layout-padding>{{vm.error}}</center>
+        </md-toolbar>
     </div>
-    <!-- <div class="indigo lighten-4" flex="50">
-
-    <div  class="indigo lighten-4" layout-padding>
-    <center><a class="waves-effect waves-light btn-large"><i class="fa fa-cloud"></i> Add Image</a></center>
-</div>
-</div> -->
-</div>
-<md-toolbar ng-if="vm.error" class="red accent-4">
-    <center layout-padding>{{vm.error}}</center>
-</md-toolbar>
-</div>
 </div>
 
 <!-- <pre>

@@ -1,18 +1,20 @@
-<table class="table-striped">
-    <tr ng-show="!filter">
+<!-- <table class="highlight"> -->
+<table class="highlight">
+    <!-- <tr ng-show="!filter">
         <td colspan="7"><a ng-click="filter=!filter">Show Filters</a></td>
     </tr>
     <tr ng-show="filter">
         <td colspan="7"><a ng-click="filter=!filter">Hide Filters</a></td>
-    </tr>
+    </tr> -->
 
     <tr>
+        <th></th>
         <th><a ng-click="reOrder('id')">Barcode</a> <span ng-show="sortBy == 'id'" class="fa fa-caret-down"></span></th>
         <th><a ng-click="sortBy='type'">Type</a> <span ng-show="sortBy == 'type'" class="fa fa-caret-down"></span></th>
         <th><a ng-click="sortBy='strain'">Strain</a> <span ng-show="sortBy == 'strain'" class="fa fa-caret-down"></span></th>
         <th><a ng-click="sortBy='remaining_quantity'">Remaining Quantity</a> <span ng-show="sortBy == 'remaining_quantity'" class="fa fa-caret-down"></span></th>
         <th><a ng-click="sortBy='usable_weight'">Usable Weight</a> <span ng-show="sortBy == 'usable_weight'" class="fa fa-caret-down"></span></th>
-        <th><a ng-click="sortBy='createdAt'">Time Left</a> <span ng-show="sortBy == 'createdAt'" class="fa fa-caret-down"></span></th>
+        <th><a ng-click="sortBy='createdAt'">Listing Created</a> <span ng-show="sortBy == 'createdAt'" class="fa fa-caret-down"></span></th>
         <!-- <th><a ng-click="sortBy='startingPrice'">Current Bid</a> <span ng-show="sortBy == 'startingPrice'" class="fa fa-caret-down"></span></th> -->
         <th><a ng-click="sortBy='buyoutPrice'">Price</a> <span ng-show="sortBy == 'buyoutPrice'" class="fa fa-caret-down"></span></th>
         <th><a ng-click="sortBy='buyer'"> Status</a> <span ng-show="sortBy == 'buyer'" class="fa fa-caret-down"></span></th>
@@ -44,21 +46,25 @@
         </td>
 
     </tr>
-    <tr ng-repeat="auction in myAuctionItems |filter:search | orderBy:sortBy">
-
-        <td>{{auction.item.id}}</td>
-        <td>{{auction.item.type}}</td>
-        <td>{{auction.item.strain}}</td>
-        <td>{{auction.item.remaining_quantity}}</td>
-        <td>{{auction.item.usable_weight}}</td>
-        <td>{{auction.createdAt}}</td>
+    <tr ng-click="toAuctionDetail(auction)" ng-repeat="auction in myAuctionItems |filter:search | orderBy:sortBy">
+        <td ng-class="{'{{auction.color}}': !!auction.color}"><img  style="display:block;" ng-src="{{auction.item.image.scaled100}}" ></td>
+        <td ng-class="{'{{auction.color}}': !!auction.color}">{{auction.item.id}}</td>
+        <td ng-class="{'{{auction.color}}': !!auction.color}">{{auction.item.type}}</td>
+        <td ng-class="{'{{auction.color}}': !!auction.color}">{{auction.item.strain}}</td>
+        <td ng-class="{'{{auction.color}}': !!auction.color}">{{auction.item.remaining_quantity}}</td>
+        <td ng-class="{'{{auction.color}}': !!auction.color}">{{auction.item.usable_weight}}</td>
+        <td ng-class="{'{{auction.color}}': !!auction.color}">{{auction.createdAtString}}</td>
         <!-- <td>${{auction.startingPrice}}</td> -->
-        <td>${{auction.buyoutPrice}}</td>
-        <td><i ng-if="auction.buyer">Sold</i><i ng-if="!auction.buyer">For Sale</i></td>
+        <td ng-class="{'{{auction.color}}': !!auction.color}">${{auction.buyoutPrice}}</td>
+        <!-- <td><i ng-if="auction.buyer">Sold</i><i ng-if="!auction.buyer">For Sale</i></td> -->
+        <td ng-class="{'{{auction.color}}': !!auction.color}">{{auction.status}}</td>
+        <!-- <td ng-class="{'{{auction.status.class}}': !!auction.status}">{{auction.status.label}}</td> -->
+
         <!-- <td></td> -->
 
     </tr>
     <tr ng-repeat="item in myInventoryItems |filter:search | orderBy:sortBy">
+        <td></td>
         <td>{{item.id}}</td>
         <td>{{item.type}}</td>
         <td>{{item.strain}}</td>
