@@ -1,46 +1,64 @@
 
 <div>
     <div class="container">
-        <!-- <div class="col s12 m6"> -->
 
 
-        <div class="card" layout="row" >
+
+        <div class="card align-center" >
+
+            <img class="card-image" ng-src="{{auction.item.image.scaled500}}">
+
             <!-- <div> -->
-            <div flex class="card-content black-text" flex="50">
-            <!-- <div flex class="deep-purple lighten-4 card-content black-text" flex="50"> -->
+            <!-- <div class="card-image waves-effect waves-block waves-light"> -->
+                <!-- <img class="activator" ng-src="{{auction.item.image.scaled400}}"> -->
+            <!-- </div> -->
+            <div class="card-content black-text">
+                <!-- <div flex class="deep-purple lighten-4 card-content black-text" flex="50"> -->
 
-                <center>
+
                     <div class="card-title">{{auction.item.productname}}</div>
                     <p>
 
-                    {{auction.item.remaining_quantity}} x {{auction.item.usable_weight}} g
-                    <!-- <p>${{auction.buyoutPrice}}<p> -->
+                        {{auction.item.remaining_quantity}} x {{auction.item.usable_weight}} g
+                        <!-- <p>${{auction.buyoutPrice}}<p> -->
 
-                    <ul>
-                        <!-- <li>Usable Weight: {{auction.item.usable_weight}}</li> -->
-                        <!-- <li>Remaining Quantity: {{auction.item.remaining_quantity}}</li> -->
-                        <li>{{auction.item.id}}</li>
-                        <li>#{{auction.item.type}}</li>
-                        <li>#{{auction.item.strain}}</li>
-                        <!-- <li>#{{auction.item.productname}}</li> -->
-                    </ul>
-                    <!-- <div class="card-action"> -->
-                    <div layout-padding>
+                        <ul>
+                            <!-- <li>Usable Weight: {{auction.item.usable_weight}}</li> -->
+                            <!-- <li>Remaining Quantity: {{auction.item.remaining_quantity}}</li> -->
+                            <li>{{auction.item.id}}</li>
+                            <li>#{{auction.item.type}}</li>
+                            <li>#{{auction.item.strain}}</li>
+                            <!-- <li>#{{auction.item.productname}}</li> -->
+                        </ul>
+                        <!-- <div class="card-action"> -->
+                        <buyer-status-action auction="auction"/>
+                        <div>
+                            <a class="waves-effect waves-light btn-large" ng-click="showBuy=!showBuy">${{auction.buyoutPrice}}</a>
+                        </div>
+                        <div ng-show="showBuy" layout-padding>
+                            <!-- <a ng-if="auction.status=== 'FOR SALE'" class="waves-effect waves-light btn-large" ng-click="(auction)">YES</a> -->
+                            <!-- <a ng-if="auction.status=== 'FOR SALE'" class="waves-effect waves-light btn-large" ng-click="(auction)">YES</a> -->
+                            <h3>Purchase for ${{auction.buyoutPrice}}?</h3>
+                            <div layout-row>
+                                <a class="waves-effect waves-light btn-large" ng-click="buy(auction)">YES</a>
+                                <a class="waves-effect waves-light btn-large" ng-click="showBuy=!showBuy">NO</a>
+                            </div>
+                        </div>
+                        <div ng-show="when" layout-padding>
+                            <!-- <a ng-if="auction.status=== 'FOR SALE'" class="waves-effect waves-light btn-large" ng-click="(auction)">YES</a> -->
+                            <!-- <a ng-if="auction.status=== 'FOR SALE'" class="waves-effect waves-light btn-large" ng-click="(auction)">YES</a> -->
+                            <h3>WHEN? HOW DO I GENERATE MANIFEST?!?</h3>
+                            <div layout-row>
+                                <a class="waves-effect waves-light btn-large" ng-click="">REQUEST MANIFEST</a>
+                                <!-- <a class="waves-effect waves-light btn-large" ng-click="">NO</a> -->
+                            </div>
+                        </div>
 
-                    </ul>
+                    <!-- <span ng-click="back()"><a ><i class="fa fa-angle-left"></i> Back</a></span> -->
                 </div>
-                <div layout-padding>
+                <!-- <div class="indigo lighten-4" flex="50">
 
-                    <div>
-                        <a class="waves-effect waves-light btn-large" ng-click="buy(auction)">${{auction.buyoutPrice}}</a>
-                    </div>
-                </div>
-            </center>
-            <!-- <span ><a ng-click="toMarket()"><i class="fa fa-angle-left"></i> Back</a></span> -->
-        </div>
-        <!-- <div class="indigo lighten-4" flex="50">
-
-            <div  class="indigo lighten-4" layout-padding>
+                <div  class="indigo lighten-4" layout-padding>
                 <center><a class="waves-effect waves-light btn-large"><i class="fa fa-cloud"></i> Add Image</a></center>
             </div>
         </div> -->

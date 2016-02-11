@@ -2,11 +2,11 @@
 (function(){
     angular
     .module('countryApp')
-    .controller('LandingController', ['$location', 'LCB', 'CloudMachine', '_',
+    .controller('LandingController', ['$location', 'LCB', 'CloudMachine', '_', '$http', 'DatabaseWhisperer',
     LandingController
 ])
 
-function LandingController($location, LCB, CloudMachine, _) {
+function LandingController($location, LCB, CloudMachine, _, $http, DBW) {
     var vm = this;
     vm.userData = {}
     vm.formData = {action: 'login'}
@@ -76,7 +76,9 @@ function LandingController($location, LCB, CloudMachine, _) {
     }
     function existingUserLoginSucceed(res) {
         sessionStorage.sessionid = res.sessionid
-        CloudMachine.StateMachine().syncCheck().then(function(){ return $location.path(PATHS.AUCTIONS) })
+        // CloudMachine.StateMachine().syncCheck().then(function(){  })
+        // $http.post('/LCB/syncCheck', function)
+        DBW.refreshLCB().then(function() { return $location.path(PATHS.AUCTIONS) })
 
     }
     function newUserSucceed (res) {

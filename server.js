@@ -9,17 +9,76 @@ var mailgun = require('mailgun-js')({ apiKey: mailgunApiKey, domain: mailgunDoma
 var TWILIO_ACCOUNT_SID = "ACe79d77e7c4ba09bf36b0fd4b75681bff"
 var TWILIO_AUTH_TOKEN = "f236b24df4564cb72a9c2126066a778f"
 var twilio = require('twilio')(TWILIO_ACCOUNT_SID,TWILIO_AUTH_TOKEN)
-
-
+var http = require('http').Server(app);
+var io = require('socket.io')(http)
 
 app.set('views', __dirname + '/app');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/app'));
 app.engine('html', require('ejs').renderFile);
+
 app.get('/', function(request, response) {
     response.render('index.html');
 });
+
+
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://robot:suzi99@ds061355.mongolab.com:61355/potnet');
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+    console.log('DB Connected');
+});
+
+
+
+
+io.on('connection', function(socket) {
+    console.log('a user connected');
+});
+
+app.post('/LCB/syncCheck', function(req, res) {
+    var tables_to_sync = [
+        // 'vehicle', //***
+        // 'employee', //***
+        // 'plant_room',//trace
+        // 'inventory_room',//trace
+        'inventory',
+        // 'plant', //trace
+        // 'plant_derivative', //trace
+        // 'manifest',//***
+        // 'inventory_transfer',//***
+        // 'inventory_transfer_inbound',//***
+        // 'sale', //?
+        // 'tax_report',//?
+        // 'vendor', //?
+        // 'qa_lab', //***?
+        // 'inventory_adjust',
+        // 'inventory_qa_sample',//***
+        // 'inventory_sample',  //***
+    ];
+    var sync_check_request = {
+        "API": "4.0",
+        "action": "sync_check",
+        "data": [],
+        "download": 1,
+        "active": 1,
+        "sessionid": req.body.sessionid
+    };
+    tables_to_sync.map(function(table){
+        sync_check_request.data.push({table: table, active: 1})
+    });
+
+    request({
+        url: "https://wslcb.mjtraceability.com/serverjson.asp",
+        method: "POST",
+        json: true,   // <--Very important!!!
+        body: sync_check_request,
+    }, function (error, response, body){
+        res.send(body);
+    });
+})
 
 app.post('/LCB/postWrapper', function(req, res) {
     console.log(req.body);
@@ -93,7 +152,9 @@ function sendMail(message){
         console.log(body);
     });
 }
+
+
 var port = process.env.PORT || 5000;
-app.listen(port, function() {
+http.listen(port, function() {
     console.log("Listening on " + port);
 });

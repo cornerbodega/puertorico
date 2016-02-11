@@ -2,17 +2,17 @@
 (function(){
   angular
     .module('countryApp')
-    .controller('IndexController', ['$location', 'PATHS',
+    .controller('IndexController', ['$location',
       IndexController
     ])
 
 
-  function IndexController($location, PATHS) {
+  function IndexController($location) {
     var vm = this;
         console.log('Index Controller!');
-
+    var PATHS = window.PATHS
     vm.toMarket = toMarket;
-    vm.toBids = toBids;
+    vm.toOrders = toOrders;
     vm.toAuctions = toAuctions;
     vm.username = sessionStorage.username
     if (!sessionStorage.sessionid) $location.path(PATHS.LANDING)
@@ -22,11 +22,11 @@
         vm.auctions = false
         $location.path(PATHS.MARKET)
     }
-    function toBids() {
+    function toOrders() {
         vm.market = false
         vm.bids = "z-depth-4"
         vm.auctions = false
-        $location.path(PATHS.BIDS)
+        $location.path(PATHS.ORDERS)
     }
     function toAuctions() {
         vm.market = false

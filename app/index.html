@@ -7,12 +7,13 @@
         UPLOADCARE_PUBLIC_KEY = '55a55d432aed473a7467';
     </script>
     <link rel="icon" href="http://potnet.net/favicon.ico" type="image/x-icon">
+    <!-- <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="bower_components/Materialize/dist/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
     <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.min.css">
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="bower_components/angular-material-data-table/dist/md-data-table.min.css">
+    <!-- <link rel="stylesheet" href="bower_components/angular-material-data-table/dist/md-data-table.min.css"> -->
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/md-table.css">
     <!-- <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css"> -->
@@ -28,9 +29,16 @@
     <script src="bower_components/angularfire/dist/angularfire.js"></script>
     <script src="bower_components/underscore/underscore-min.js"></script>
     <script src="bower_components/angular-underscore-module/angular-underscore-module.js"></script>
-    <script src="bower_components/angular-material-data-table/dist/md-data-table.min.js"></script>
+    <!-- <script src="bower_components/angular-material-data-table/dist/md-data-table.min.js"></script> -->
     <script src="bower_components/angular-uploadcare/angular-uploadcare.js"></script>
     <script src="bower_components/Uploadcare/uploadcare.min.js"></script>
+    <script src="bower_components/moment/min/moment.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+
+    <!-- <script src="bower_components/socket.io-client/socket.io.js"></script> -->
+    <!-- <script> var socket = io(); console.log(socket);</script> -->
 
     <!-- <script src="https://ucarecdn.com/widget/2.6.0/uploadcare/uploadcare.full.min.js" charset="utf-8"></script> -->
 
@@ -60,6 +68,12 @@
     <script src="Directives/Directives.js"></script>
     <script src="Manifests/controllers/All-Manifests-Controller.js"></script>
     <script src="Manifests/controllers/Inbound-Transfers-Controller.js"></script>
+    <script src="Orders/controllers/Orders-Controller.js"></script>
+    <script src="Orders/controllers/Order-Detail-Controller.js"></script>
+    <script src="Auctions/Auctions-Utils.js"></script>
+    <script src="Database-Whisperer/Database-Whisperer.js"></script>
+    <!-- <script src="Orders/Item-Detail/controllers/Order-Detail-Controller.js"></script> -->
+
 
     <!-- <script src="utils/underscore-wrapper.js"></script> -->
 
@@ -71,9 +85,9 @@
         <md-content>
             <md-toolbar class="z-depth-1">
                 <div class="md-toolbar-tools">
-                    <span flex>{{vm.username}}</span>
+                    <span flex><md-button>{{vm.username}}</md-button></span>
                     <md-button ng-class="vm.market" ng-click="vm.toMarket()">MARKETPLACE</md-button>
-                    <md-button ng-class="vm.bids" ng-click="vm.toBids()">
+                    <md-button ng-class="vm.bids" ng-click="vm.toOrders()">
                     MY ORDERS
                     </md-button>
                     <md-button ng-class="vm.auctions" ng-click="vm.toAuctions()">
@@ -81,7 +95,7 @@
                     </md-button>
                 </div>
             </md-toolbar>
-            <div ng-view layout-padding>
+            <div ng-view>
         </md-content>
     </div>
 </body>

@@ -4,8 +4,10 @@ var countryApp = angular.module('countryApp', [
   'angular-loading-bar',
   'firebase',
   'underscore',
-  'md.data.table',
+  // 'md.data.table',
   'ng-uploadcare',
+  // 'ui.bootstrap',
+
 ]);
 
 countryApp.config(function($routeProvider) {
@@ -63,6 +65,16 @@ countryApp.config(function($routeProvider) {
     .when('/market/item/:id', {
       templateUrl: 'Market/Item-Detail/item-detail.html',
       controller: 'ItemDetailController',
+      controllerAs: 'vm'
+    })
+    .when('/market/orders/', {
+      templateUrl: 'Orders/views/Orders.html',
+      controller: 'OrdersController',
+      controllerAs: 'vm'
+    })
+    .when('/market/orders/item/:id', {
+      templateUrl: 'Orders/views/Order-Detail.html',
+      controller: 'OrderDetailController',
       controllerAs: 'vm'
     })
     // when('/:countryId', {

@@ -1,0 +1,55 @@
+
+<center>
+    <div class="container">
+        <div class="card align-center" >
+
+            <img class="card-image" ng-src="{{order.item.image.scaled500}}">
+
+            <!-- <div> -->
+            <!-- <div class="card-image waves-effect waves-block waves-light"> -->
+                <!-- <img class="activator" ng-src="{{order.item.image.scaled400}}"> -->
+            <!-- </div> -->
+            <div class="card-content black-text">
+                <!-- <div flex class="deep-purple lighten-4 card-content black-text" flex="50"> -->
+
+
+                    <div class="card-title">{{order.item.productname}}</div>
+                    <p>
+
+                        {{order.item.remaining_quantity}} x {{order.item.usable_weight}} g
+                        <!-- <p>${{order.buyoutPrice}}<p> -->
+
+                        <ul>
+                            <!-- <li>Usable Weight: {{order.item.usable_weight}}</li> -->
+                            <!-- <li>Remaining Quantity: {{order.item.remaining_quantity}}</li> -->
+                            <li>{{order.item.id}}</li>
+                            <li>#{{order.item.type}}</li>
+                            <li>#{{order.item.strain}}</li>
+                            <!-- <li>#{{order.item.productname}}</li> -->
+                        </ul>
+                        <!-- <div class="card-action"> -->
+                        <buyer-status-action order="order"/>
+
+                        <div layout-padding>
+                            <!-- <a ng-if="order.status=== 'FOR SALE'" class="waves-effect waves-light btn-large" ng-click="(order)">YES</a> -->
+                            <!-- <a ng-if="order.status=== 'FOR SALE'" class="waves-effect waves-light btn-large" ng-click="(order)">YES</a> -->
+
+
+                        </div>
+                    <span ng-click="back()"><a ><i class="fa fa-angle-left"></i> Back</a></span>
+                </div>
+                <!-- <div class="indigo lighten-4" flex="50">
+
+                <div  class="indigo lighten-4" layout-padding>
+                <center><a class="waves-effect waves-light btn-large"><i class="fa fa-cloud"></i> Add Image</a></center>
+            </div>
+        </div> -->
+    </div>
+    <md-toolbar ng-if="vm.error" class="red accent-4">
+        <center layout-padding>{{vm.error}}</center>
+    </md-toolbar>
+</div>
+</center>
+<!-- <pre>
+{{vm.item | json}}
+</pre> -->

@@ -14,90 +14,90 @@ function CloudMachine($firebaseObject, $http, $location, $q) {
         users: users,
         ChimpMachine: ChimpMachine,
         UserMachine: UserMachine,
-        StateMachine: StateMachine,
-        getSyncCheckRequest: getSyncCheckRequest
+        // StateMachine: StateMachine,
+        // getSyncCheckRequest: getSyncCheckRequest
     }
-    function StateMachine(){
-        function syncCheck() {
-            // console.log(getSyncCheckRequest());
-            return getSyncCheckRequest().then(function(){
-                return $http({
-                    method: 'POST',
-                    url: 'LCB/postWrapper',
-                    data: getSyncCheckRequest(),
-                    datatype: 'json',
-                })
-            })
-
-        }
-        function sync_check(request){
-            return $http({
-                method: 'POST',
-                url: 'LCB/postWrapper',
-                data: request,
-                datatype: 'json',
-            })
-        }
-        return { syncCheck: syncCheck, sync_check: sync_check }
-    }
-    function getSyncCheckRequest() {
-        var defer = $q.defer()
-        var tables_to_sync = [
-            'vehicle',
-            'employee',
-            'plant_room',
-            'inventory_room',
-            'inventory',
-            'plant',
-            'plant_derivative',
-            'manifest',
-            'inventory_transfer',
-            'inventory_transfer_inbound',
-            'sale',
-            'tax_report',
-            'vendor',
-            'qa_lab',
-            'inventory_adjust',
-            'inventory_qa_sample',
-            'inventory_sample',
-        ];
-        var sync_check_request = {
-            "API": "4.0",
-            "action": "sync_check",
-            "data": [],
-            "download": 1,
-            "active": 1,
-            "sessionid": sessionStorage.sessionid
-        }
-        // load summary sum for each table
-        var users = cloudMachine.users()
-        return users.$loaded().then(function(){
-            console.log('users loaded');
-            var me = _.find(users, {username: sessionStorage.username})
-            tables_to_sync.map( function( table ) {
-                var tableSum = _.find(me.summary, {table:table}).sum
-                console.log(tableSum);
-                if (!!tableSum) sync_check_request.data.push({table: table, active: 1, sum:tableSum})
-                else sync_check_request.data.push({table: table, active: 1})
-                // defer.resolve(sync_check_request)
-                // console.log(sync_check_request);
-                // if (me.summary) console.log(me.summary);
-                // var summary = users[me.key].summary
-                // console.log(summary);
-                // var sum = _.find(summary, {table: table}).sum
-                // console.log(sum);
-                // console.log(_.find(users[me.key].summary, {table: table}));
-                // sync_check_request.data.push({table: table, active: 1})
-                // sync_check_request.data.push({table: table, active: 1, sum: sum})
-            })
-            return defer.resolve(sync_check_request)
-            // console.log(sync_check_request);
-            // defer.resolve(sync_check_request)
-            // return sync_check_request
-        })
-        return defer.promise
-        // talbes_to_sync
-    }
+    // function StateMachine(){
+    //     function syncCheck() {
+    //         // console.log(getSyncCheckRequest());
+    //         return getSyncCheckRequest().then(function(){
+    //             return $http({
+    //                 method: 'POST',
+    //                 url: 'LCB/postWrapper',
+    //                 data: getSyncCheckRequest(),
+    //                 datatype: 'json',
+    //             })
+    //         })
+    //
+    //     }
+    //     function sync_check(request){
+    //         return $http({
+    //             method: 'POST',
+    //             url: 'LCB/postWrapper',
+    //             data: request,
+    //             datatype: 'json',
+    //         })
+    //     }
+    //     return { syncCheck: syncCheck, sync_check: sync_check }
+    // }
+    // function getSyncCheckRequest() {
+    //     var defer = $q.defer()
+    //     var tables_to_sync = [
+    //         'vehicle',
+    //         'employee',
+    //         'plant_room',
+    //         'inventory_room',
+    //         'inventory',
+    //         'plant',
+    //         'plant_derivative',
+    //         'manifest',
+    //         'inventory_transfer',
+    //         'inventory_transfer_inbound',
+    //         'sale',
+    //         'tax_report',
+    //         'vendor',
+    //         'qa_lab',
+    //         'inventory_adjust',
+    //         'inventory_qa_sample',
+    //         'inventory_sample',
+    //     ];
+    //     var sync_check_request = {
+    //         "API": "4.0",
+    //         "action": "sync_check",
+    //         "data": [],
+    //         "download": 1,
+    //         "active": 1,
+    //         "sessionid": sessionStorage.sessionid
+    //     }
+    //     // load summary sum for each table
+    //     var users = cloudMachine.users()
+    //     return users.$loaded().then(function(){
+    //         console.log('users loaded');
+    //         var me = _.find(users, {username: sessionStorage.username})
+    //         tables_to_sync.map( function( table ) {
+    //             var tableSum = _.find(me.summary, {table:table}).sum
+    //             console.log(tableSum);
+    //             if (!!tableSum) sync_check_request.data.push({table: table, active: 1, sum:tableSum})
+    //             else sync_check_request.data.push({table: table, active: 1})
+    //             // defer.resolve(sync_check_request)
+    //             // console.log(sync_check_request);
+    //             // if (me.summary) console.log(me.summary);
+    //             // var summary = users[me.key].summary
+    //             // console.log(summary);
+    //             // var sum = _.find(summary, {table: table}).sum
+    //             // console.log(sum);
+    //             // console.log(_.find(users[me.key].summary, {table: table}));
+    //             // sync_check_request.data.push({table: table, active: 1})
+    //             // sync_check_request.data.push({table: table, active: 1, sum: sum})
+    //         })
+    //         return defer.resolve(sync_check_request)
+    //         // console.log(sync_check_request);
+    //         // defer.resolve(sync_check_request)
+    //         // return sync_check_request
+    //     })
+    //     return defer.promise
+    //     // talbes_to_sync
+    // }
     function auctionsRef() {
         var rootRef = new Firebase("https://potnet.firebaseio.com")
         var auctions =  $firebaseObject(rootRef.child('auctions'))
@@ -134,6 +134,7 @@ function CloudMachine($firebaseObject, $http, $location, $q) {
         // https://mandrillapp.com/api/1.0/
 
         function buy(auction) {
+            console.log(auction);
             $http({
                 method: 'POST',
                 url: '/textMessage/test',

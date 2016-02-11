@@ -1,11 +1,11 @@
 (function(){
     angular
     .module('countryApp')
-    .controller('AuctionsController', ['$location', 'LCB', 'Auction', '$scope', 'CloudMachine', '_', 'Inventory','$http',
+    .controller('AuctionsController', ['$location', 'LCB', 'Auction', '$scope', 'CloudMachine', '_', 'Inventory','$http','AuctionUtils',
     AuctionsController
 ])
 
-function AuctionsController($location, LCB, Auction, $scope, CloudMachine, _, Inventory, $http) {
+function AuctionsController($location, LCB, Auction, $scope, CloudMachine, _, Inventory, $http, AuctionUtils) {
     var PATHS = window.PATHS
     var vm = this;
     // vm.items = InventoryItems;
@@ -20,12 +20,16 @@ function AuctionsController($location, LCB, Auction, $scope, CloudMachine, _, In
         _.each(auctions, function(auction){
             if (!auction) return
             if (!auction.status) return
-            auction.color = Auction.colorize(auction)
+            console.log(auction);
+            auction.color = AuctionUtils.colorize(auction)
         })
-
+        auctions.$save()
         users.$loaded().then(function usersLoaded() {
             var me = _.find(users, {username: sessionStorage.username})
+            // $scope.myInventoryItems = Inventory.format(users[me.key].raw.inventory)
             $scope.myInventoryItems = Inventory.format(users[me.key].raw.inventory)
+            $scope.myAuctionItems = _.filter(auctions, {seller: sessionStorage.ubi})
+console.log($scope.myAuctionItems);
             console.log(users);
             console.log(auctions);
             var tables_to_sync = [
@@ -36,12 +40,12 @@ function AuctionsController($location, LCB, Auction, $scope, CloudMachine, _, In
                 'inventory',
                 // 'plant', //trace
                 // 'plant_derivative', //trace
-                'manifest',//***
-                'inventory_transfer',//***
-                'inventory_transfer_inbound',//***
+                // 'manifest',//***
+                // 'inventory_transfer',//***
+                // 'inventory_transfer_inbound',//***
                 // 'sale', //?
                 // 'tax_report',//?
-                'vendor', //?
+                // 'vendor', //?
                 // 'qa_lab', //***?
                 // 'inventory_adjust',
                 // 'inventory_qa_sample',//***
@@ -70,24 +74,35 @@ function AuctionsController($location, LCB, Auction, $scope, CloudMachine, _, In
                 datatype: 'json',
             }).success(function (res) {
                 console.log(res);
+                // REPLACE THIS WITH MONGOLAB IF TRANSFERS A PROBLEM
                 users[me.key].raw = res
                 users.$save()
                 // $scope.myInventoryItems = Inventory.format(res.inventory)
-                $scope.myInventoryItems.map(function(item, index){
-                    _.each(auctions, function(auction){
-                        // barcodeid: item.id
-                        if (!auction) return
-                        if (!auction.item) return
-                        // console.log(auction);
-                        // console.log(auction.item.id + ' ' + item.id);
-                        auction.createdAtString = gettimestring(auction.createdAt)
-                        if (auction.item.id === item.id) {
-                            console.log(auction.color);
-                            $scope.myAuctionItems.push(auction)
-                            $scope.myInventoryItems.splice(index, 1)
-                        }
-                    })
+                $scope.myInventoryItems = _.filter($scope.myInventoryItems, function(item){
+                    if (_.findWhere($scope.myAuctionItems, {barcodeid: item.id})) return false;
+                    return true
                 })
+                $scope.myAuctionItems = _.filter(auctions, {seller: sessionStorage.ubi})
+                console.log($scope.myAuctionItems);
+                // $scope.myInventoryItems.map(function(item, index){
+                //
+                //     _.each(auctions, function(auction){
+                //         // barcodeid: item.id
+                //         if (!auction) return
+                //         if (!auction.item) return
+                //
+                //         // console.log(auction);
+                //         // console.log(auction.item.id + ' ' + item.id);
+                //         if (_.find(auction, {}))
+                //         // console.log(auction.barcodeid === item.id);
+                //         // if (auction.item.id === item.id) {
+                //         //     // console.log(auction.color);
+                //         //     console.log(item);
+                //         //     $scope.myAuctionItems.push(auction)
+                //         //     $scope.myInventoryItems.splice(index, 1)
+                //         // }
+                //     })
+                // })
                 // var tt = []
 
                 // $scope.myAuctionItems =
@@ -108,11 +123,7 @@ function AuctionsController($location, LCB, Auction, $scope, CloudMachine, _, In
         $location.path(PATHS.CREATE_AUCTION + item.id)
     }
 
-    function gettimestring (unixtime) {
-        // console.log(unixtime);
-        return new Date(unixtime).toLocaleString();
-        // return unixtime *
-    }
+
 };
 
 })();

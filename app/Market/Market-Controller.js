@@ -13,6 +13,7 @@ function MarketController($location, Auction, Market, $scope, _, PATHS) {
     $scope.sortBy = 'createdAt'
     $scope.reverse = 'true'
     $scope.auctions = []
+
     // $scope.createBid = createBid
     // function createBid(auction) {
     //     console.log(auction);

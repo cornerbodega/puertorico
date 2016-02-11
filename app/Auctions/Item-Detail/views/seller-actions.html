@@ -1,11 +1,26 @@
- <div ng-if="forsale" ng-class="{'{{auction.color}}': !!auction.color}" layout-col>
-    <p>CURRENTLY FOR SALE</p>
+ <div layout-col ng-if="reserved" ng-class="{'{{auction.color}}': !!auction.color}" layout-col>
+    <!-- <p>{{auction.status}}</p> -->
+    <!-- <div ng-if=""> -->
+    <!-- ACTIONS HERE!!
+    IF PENDING - WHEN WILL YOU DELIVER? HOW"S THIS MANIFEST ? -> SEND TO BUYER TO CONFIRM  -->
+    <div>{{auction.buyer}} would like to buy this item for ${{auction.buyoutPrice}}. Would you like to accept this offer and generate a manifest?</div>
+    <div><a class="waves-effect waves-light btn-large" ng-click="sellerConfirm()">YES</a>
+    <a class="waves-effect waves-light btn-large" ng-click="back()">NO</a></div>
+
 </div>
-<div ng-if="reserved" ng-class="{'{{auction.status.class}}': !!auction.status}" class="blue lighten-4 md-padding" layout-col>
+{{showManifestInfo}}
+<div ng-show="!!showManifestInfo">
+    <!-- <input /> -->
+    MANIFEST!!
+    <input placeholder="Date" ng-model="manifestDateTime" my-date-time-selector class="form-control" />
+    <div><a class="waves-effect waves-light btn-large" ng-click="generateManifest()">GENERATE MANIFEST</a>
+
+</div>
+<!-- <div ng-if="reserved" ng-class="{'{{auction.status.class}}': !!auction.status}" class="blue lighten-4 md-padding" layout-col>
     <p>NEED INFO</p>
     <a class="waves-effect waves-light btn-large" ng-click="vm.createAuction()">YES</a>
     <a class="waves-effect waves-light btn-large" ng-click="vm.createAuction()">NO</a>
-</div>
+</div> -->
 <!-- <md-menu md-offset="0 -7">
     <md-button aria-label="Open demo menu" ng-click="$mdOpenMenu($event)">
         <i  class="medium material-icons">insert_chart</i>
